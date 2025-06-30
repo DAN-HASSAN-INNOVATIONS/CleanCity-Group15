@@ -1,0 +1,144 @@
+
+# ✅ Test Plan for CleanCity Waste Scheduler
+
+**1. Test Objectives**
+
+Ensure all core user flows (request submission, admin updates, feedback) function correctly.
+
+Validate form inputs and error handling.
+
+Test responsiveness and accessibility.
+
+Confirm UI reflects the current localStorage state.
+
+Identify regressions after updates.
+
+**2. Scope**
+
+In-Scope:
+
+All 5 routes/pages (/, /dashboard, /feedback, /awareness, /admin)
+
+Data persistence with localStorage
+
+UI responsiveness across devices
+
+Manual and automated testing using React Testing Library
+
+Out-of-Scope:
+
+Backend/API testing (since none exists)
+
+Auth or user sessions (if not implemented)
+
+**3. Test Types**
+
+Type Description - Functional Testing( Validate forms, filters, and buttons UI Testing Responsive design, status updates Accessibility (a11y) Alt-texts, keyboard navigation Integration Testing Data flow between components/pages Regression Testing Ensure no new changes break features Boundary Testing Long/invalid input handling.
+
+Non-functional Testing Load, performance (basic), usability 
+
+**4. Testing Tools**
+
+Manual Testing: Browser DevTools, screen readers
+
+Automated: 
+
+React Testing Library (I think we have it already). 
+
+Optional: add Jest for E2E or more coverage
+
+
+**5. Test Environment**
+
+OS: Windows/Linux/Mac
+
+Browser: Chrome, Firefox, Edge
+
+Device Types: Desktop, Mobile
+
+Test Data: REQ001–005, FB001, locations, waste types
+
+**6. Test Cases (samples)**
+
+✅ Home Page (/)
+
+[ ] Submit empty form → Expect error messages (Bug: Date field fails validation)
+
+[ ] Valid form submission → Show success message
+
+[ ] Long text input → Layout remains stable
+
+[ ] Input 2 or 3 characters as a password and expect an error message. 
+
+✅ Dashboard (/dashboard)
+
+[ ] Filter by location ( eg: Eldoret) → Only Eldoret requests (Bug: wrong results)
+
+[ ] Badge color matches status (Scheduled, Missed, etc.)
+
+[ ] Test responsiveness (mobile/tablet views)
+
+✅ Feedback (/feedback)
+
+[ ] Invalid Request ID → Show appropriate error
+
+[ ] Valid feedback submits and persists
+
+[ ] Long text in feedback → Layout test
+
+✅ Awareness (/awareness)
+
+[ ] All images should have meaningful alt tags 
+
+[ ] Keyboard tab through content → Focusable and readable
+
+✅ Admin Panel (/admin)
+
+[ ] Click “Mark as Scheduled” → Update status and UI refresh (Bug: UI doesn’t refresh)
+
+[ ] Updated status stored in localStorage
+
+[ ] Non-existent request update → Show error/handle gracefully
+
+7. Automation Coverage Suggestions
+
+Using React Testing Library, cover:
+
+Form validation logic
+
+LocalStorage state rendering
+
+Component renders (e.g., PickupRequestList, FeedbackForm)
+
+Routing-based rendering of page content
+
+**8. Acceptance Criteria**
+
+All pages load without JS errors
+
+Forms validate all fields and provide user feedback
+
+Status changes are immediately visible in the UI
+
+App functions on desktop and mobile screens
+
+Critical bugs listed in the manual test guide are fixed
+
+**9. Known Bugs**
+
+Home: Date field should start from the present date and forward, no backdate. 
+
+Dashboard: Location filter should include several places. 
+
+Awareness: Missing alt attributes
+
+Admin: UI doesn’t reflect real-time status change
+
+**10.  My Recommendations**
+
+Add ESLint and Prettier for easy static code review
+
+Use data-testid attributes for better test targeting
+
+Consider a fake backend using json-server if you want to simulate API calls
+
